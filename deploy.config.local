@@ -1,0 +1,103 @@
+# Langfuse GCP Deployment Configuration
+# Copy this file and modify the values as needed for your deployment
+
+# ========================================
+# REQUIRED CONFIGURATION
+# ========================================
+
+# Your domain name for Langfuse (REQUIRED)
+# Example: langfuse.example.com
+DOMAIN="langfuse.atanexus.com"
+
+# Your GCP Project ID (REQUIRED)
+# You can find this in the GCP Console or run: gcloud config get-value project
+GCP_PROJECT_ID="atanexus-ai-fl2b0"
+
+# ========================================
+# OPTIONAL CONFIGURATION
+# ========================================
+
+# GCP Region for deployment (default: us-central1)
+# Choose a region close to your users for better performance
+# Common options: us-central1, us-east1, europe-west1, asia-southeast1
+GCP_REGION="us-central1"
+
+# Deployment name - used as prefix for resources (default: langfuse)
+# Change this if deploying multiple instances in the same project
+DEPLOYMENT_NAME="langfuse"
+
+# Kubernetes namespace (default: langfuse)
+KUBERNETES_NAMESPACE="langfuse"
+
+# ========================================
+# NETWORK CONFIGURATION
+# ========================================
+
+# VPC subnet CIDR block (default: 10.0.0.0/16)
+# Change if this conflicts with existing networks
+SUBNETWORK_CIDR="10.0.0.0/16"
+
+# ========================================
+# DATABASE CONFIGURATION
+# ========================================
+
+# PostgreSQL instance configuration
+# See: https://cloud.google.com/sql/docs/postgres/instance-settings
+
+# Database machine type (default: db-perf-optimized-N-2)
+# Options: db-standard-1, db-standard-2, db-standard-4, db-perf-optimized-N-2, etc.
+DATABASE_TIER="db-perf-optimized-N-2"
+
+# Database edition (default: ENTERPRISE_PLUS)
+# Options: ENTERPRISE, ENTERPRISE_PLUS
+DATABASE_EDITION="ENTERPRISE_PLUS"
+
+# Database availability (default: REGIONAL)
+# Options: ZONAL, REGIONAL (REGIONAL provides high availability)
+DATABASE_AVAILABILITY="REGIONAL"
+
+# ========================================
+# REDIS CACHE CONFIGURATION
+# ========================================
+
+# Redis tier (default: STANDARD_HA)
+# Options: BASIC, STANDARD_HA (STANDARD_HA provides high availability)
+CACHE_TIER="STANDARD_HA"
+
+# Redis memory size in GB (default: 1)
+# Minimum: 1, adjust based on your expected usage
+CACHE_MEMORY_GB="1"
+
+# ========================================
+# SECURITY CONFIGURATION
+# ========================================
+
+# Enable deletion protection for data resources (default: true)
+# Set to false for development/testing environments
+DELETION_PROTECTION="true"
+
+# Use encryption key for sensitive data (default: true)
+# Recommended to keep enabled for production
+USE_ENCRYPTION_KEY="true"
+
+# ========================================
+# APPLICATION CONFIGURATION
+# ========================================
+
+# Langfuse Helm chart version (default: 1.2.15)
+# Check https://github.com/langfuse/langfuse-k8s/releases for latest version
+LANGFUSE_CHART_VERSION="1.2.15"
+
+# ========================================
+# COST OPTIMIZATION TIPS
+# ========================================
+#
+# For development/testing environments, consider:
+# - DATABASE_TIER="db-standard-1"
+# - DATABASE_EDITION="ENTERPRISE"
+# - DATABASE_AVAILABILITY="ZONAL"
+# - CACHE_TIER="BASIC"
+# - DELETION_PROTECTION="false"
+#
+# For production environments, use the defaults or higher tiers
+# depending on your performance and availability requirements. 

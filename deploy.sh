@@ -285,10 +285,7 @@ main() {
     echo ""
     
     # Load configuration from file if it exists
-    if [[ -f "deploy.config" ]]; then
-        print_info "Loading configuration from deploy.config"
-        source deploy.config
-    elif [[ -f "deploy.config.local" ]]; then
+    if [[ -f "deploy.config.local" ]]; then
         print_info "Loading configuration from deploy.config.local"
         source deploy.config.local
     else
@@ -328,7 +325,8 @@ main() {
     enable_apis
     
     # Create main.tf
-    create_main_tf
+    # Skip main.tf creation - use existing file
+    print_info "Using existing main.tf configuration"
     
     # Terraform workflow
     terraform_init
