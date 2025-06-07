@@ -22,9 +22,9 @@ module "langfuse" {
   subnetwork_cidr                     = "10.0.0.0/16"
   
   # Database optimization - Significant cost savings
-  database_instance_tier              = "db-standard-1"          # Changed from db-perf-optimized-N-2
+  database_instance_tier              = "db-custom-2-7680"       # Custom 2 vCPU, 7.5GB RAM - compatible with ENTERPRISE
   database_instance_edition           = "ENTERPRISE"             # Changed from ENTERPRISE_PLUS
-  database_instance_availability_type = "ZONAL"                 # Changed from REGIONAL
+  database_instance_availability_type = "ZONAL"                 # Changed from REGIONAL for cost savings
   
   # Cache optimization - Cost savings for development/testing
   cache_tier                          = "BASIC"                 # Changed from STANDARD_HA
