@@ -1,0 +1,84 @@
+# Langfuse GCP Deployment Configuration Template
+# Copy this file to 'deploy.config.local' and modify the values for your deployment
+
+# ========================================
+# REQUIRED CONFIGURATION
+# ========================================
+
+# Your domain name for Langfuse (REQUIRED)
+# Example: langfuse.example.com
+DOMAIN="your-domain.com"
+
+# Your GCP Project ID (REQUIRED)
+# You can find this in the GCP Console or run: gcloud config get-value project
+GCP_PROJECT_ID="your-gcp-project-id"
+
+# ========================================
+# OPTIONAL CONFIGURATION (Cost-Optimized Defaults)
+# ========================================
+
+# GCP Region for deployment (default: us-central1)
+GCP_REGION="us-central1"
+
+# Deployment name - used as prefix for resources (default: langfuse)
+DEPLOYMENT_NAME="langfuse"
+
+# Kubernetes namespace (default: langfuse)
+KUBERNETES_NAMESPACE="langfuse"
+
+# ========================================
+# NETWORK CONFIGURATION
+# ========================================
+
+# VPC subnet CIDR block (default: 10.0.0.0/16)
+SUBNETWORK_CIDR="10.0.0.0/16"
+
+# ========================================
+# DATABASE CONFIGURATION (Cost-Optimized)
+# ========================================
+
+# Database machine type - Cost-optimized for moderate workloads
+DATABASE_TIER="db-custom-2-7680"  # 2 vCPU, 7.5GB RAM
+
+# Database edition - Cost-optimized
+DATABASE_EDITION="ENTERPRISE"  # vs ENTERPRISE_PLUS for cost savings
+
+# Database availability - Cost-optimized
+DATABASE_AVAILABILITY="ZONAL"  # vs REGIONAL for cost savings
+
+# ========================================
+# REDIS CACHE CONFIGURATION (Cost-Optimized)
+# ========================================
+
+# Redis tier - Cost-optimized
+CACHE_TIER="BASIC"  # vs STANDARD_HA for cost savings
+
+# Redis memory size in GB
+CACHE_MEMORY_GB="1"
+
+# ========================================
+# SECURITY & FEATURES
+# ========================================
+
+# Enable deletion protection for data resources
+DELETION_PROTECTION="true"
+
+# Use encryption key for sensitive data
+USE_ENCRYPTION_KEY="true"
+
+# Langfuse Helm chart version
+LANGFUSE_CHART_VERSION="1.2.15"
+
+# ========================================
+# COST OPTIMIZATION NOTES
+# ========================================
+#
+# Current configuration provides ~60-70% cost savings vs default settings:
+# - Estimated monthly cost: $100-150 (vs $300-450+ for high-performance setup)
+# - Annual savings: ~$2,400-3,600
+#
+# For production workloads requiring higher performance/availability:
+# - DATABASE_TIER="db-custom-4-15360" (4 vCPU, 15GB RAM)
+# - DATABASE_EDITION="ENTERPRISE_PLUS"
+# - DATABASE_AVAILABILITY="REGIONAL"
+# - CACHE_TIER="STANDARD_HA" 
