@@ -16,15 +16,21 @@ module "langfuse" {
   # Required
   domain = "langfuse.atanexus.com"
 
-  # Optional configurations
+  # Optional configurations - Optimized for cost
   name                                = "langfuse"
   kubernetes_namespace                = "langfuse"
   subnetwork_cidr                     = "10.0.0.0/16"
-  database_instance_tier              = "db-perf-optimized-N-2"
-  database_instance_edition           = "ENTERPRISE_PLUS"
-  database_instance_availability_type = "REGIONAL"
-  cache_tier                          = "STANDARD_HA"
+  
+  # Database optimization - Significant cost savings
+  database_instance_tier              = "db-standard-1"          # Changed from db-perf-optimized-N-2
+  database_instance_edition           = "ENTERPRISE"             # Changed from ENTERPRISE_PLUS
+  database_instance_availability_type = "ZONAL"                 # Changed from REGIONAL
+  
+  # Cache optimization - Cost savings for development/testing
+  cache_tier                          = "BASIC"                 # Changed from STANDARD_HA
   cache_memory_size_gb                = 1
+  
+  # Keep production-ready features
   deletion_protection                 = true
   langfuse_chart_version              = "1.2.15"
   use_encryption_key                  = true
